@@ -8,12 +8,30 @@
 
 import UIKit
 import CoreData
+import LocalAuthentication
 
 class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
     var detailViewController: DetailViewController? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
 
+//    func readPropertyList() {
+//
+//        let path = Bundle.main.path(forResource:"themes", ofType: "plist")
+//
+//        let dict:NSDictionary = NSDictionary(contentsOfFile: path!)!
+//
+//        //check to see if there is any object with the key of "Lives"
+//        if (dict.object(forKey: "themeTypes") != nil) {
+//
+//            //next, check to see if we can create a variable named someInt that is of type Int
+//            if let someString:[String] = dict.object(forKey: "themeTypes") as? [String] {
+//
+//                print(someString) //success
+//            }
+//
+//        }
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +43,26 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         if let split = splitViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+        }
+        
+        let myContext = LAContext()
+        let myLocalizedReasonString = "Authenticate yo self"
+        
+        var authError: NSError?
+        if #available(iOS 8.0, macOS 10.12.1, *) {
+            if myContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
+                myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: myLocalizedReasonString) { success, evaluateError in
+                    if success {
+                        // User authenticated successfully, take appropriate action
+                    } else {
+                        // User did not authenticate successfully, look at error and take appropriate action
+                    }
+                }
+            } else {
+                // Could not evaluate policy; look at authError and present an appropriate message to user
+            }
+        } else {
+            // Fallback on earlier versions
         }
     }
 
@@ -61,14 +99,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             newTodo.todoDescription = descTextField.text;
           //  newTodo.isCompleted = false;
             // Save the context.
-            do {
-                try context.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
+            self.saveToDo()
         })
         
     
@@ -81,6 +112,20 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         self.present(alertController, animated: true, completion: nil)
       
+    }
+    
+    func saveToDo()
+    {
+        let context = self.fetchedResultsController.managedObjectContext
+        
+        do {
+            try context.save()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
     }
 
     // MARK: - Segues
@@ -147,8 +192,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         cell.detailTextLabel!.text = description;
         cell.textLabel!.text = title + " priority : " + String(Todo.priorityNumber);
-        
-     
         
         let attributeString =  NSMutableAttributedString(string: title + " priority : " + String(Todo.priorityNumber))
         
@@ -227,6 +270,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 tableView.deleteRows(at: [indexPath!], with: .fade)
             case .update:
                 configureCell(tableView.cellForRow(at: indexPath!)!, withTodo: anObject as! ToDo)
+                self.saveToDo()
             case .move:
                 configureCell(tableView.cellForRow(at: indexPath!)!, withTodo: anObject as! ToDo)
                 tableView.moveRow(at: indexPath!, to: newIndexPath!)

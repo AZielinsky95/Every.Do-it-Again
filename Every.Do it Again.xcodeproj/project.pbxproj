@@ -14,6 +14,7 @@
 		CA37F52220AB2DAD00C3C2A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA37F52020AB2DAD00C3C2A6 /* Main.storyboard */; };
 		CA37F52420AB2DAE00C3C2A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA37F52320AB2DAE00C3C2A6 /* Assets.xcassets */; };
 		CA37F52720AB2DAE00C3C2A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA37F52520AB2DAE00C3C2A6 /* LaunchScreen.storyboard */; };
+		CA37F52F20AB542500C3C2A6 /* themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA37F52E20AB542500C3C2A6 /* themes.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		CA37F52320AB2DAE00C3C2A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA37F52620AB2DAE00C3C2A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA37F52820AB2DAE00C3C2A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA37F52E20AB542500C3C2A6 /* themes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = themes.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				CA37F52520AB2DAE00C3C2A6 /* LaunchScreen.storyboard */,
 				CA37F52820AB2DAE00C3C2A6 /* Info.plist */,
 				CA37F51920AB2DAD00C3C2A6 /* Every_Do_it_Again.xcdatamodeld */,
+				CA37F52E20AB542500C3C2A6 /* themes.plist */,
 			);
 			path = "Every.Do it Again";
 			sourceTree = "<group>";
@@ -128,6 +131,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA37F52F20AB542500C3C2A6 /* themes.plist in Resources */,
 				CA37F52720AB2DAE00C3C2A6 /* LaunchScreen.storyboard in Resources */,
 				CA37F52420AB2DAE00C3C2A6 /* Assets.xcassets in Resources */,
 				CA37F52220AB2DAD00C3C2A6 /* Main.storyboard in Resources */,
