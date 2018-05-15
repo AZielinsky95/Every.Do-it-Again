@@ -59,6 +59,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             let newTodo = ToDo(context: context)
             newTodo.title = titleTextField.text;
             newTodo.todoDescription = descTextField.text;
+          //  newTodo.isCompleted = false;
             // Save the context.
             do {
                 try context.save()
@@ -146,6 +147,25 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         cell.detailTextLabel!.text = description;
         cell.textLabel!.text = title + " priority : " + String(Todo.priorityNumber);
+        
+     
+        
+        let attributeString =  NSMutableAttributedString(string: title + " priority : " + String(Todo.priorityNumber))
+        
+        attributeString.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+        
+            
+        if(Todo.isCompleted)
+        {
+           // cell.backgroundColor = UIColor.green;
+            cell.textLabel!.attributedText = attributeString;
+        }
+        else
+        {
+           // cell.backgroundColor = UIColor.clear;
+            cell.textLabel!.attributedText = nil;
+            cell.textLabel!.text = title + " priority : " + String(Todo.priorityNumber);
+        }
     }
 
     // MARK: - Fetched results controller

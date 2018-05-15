@@ -55,6 +55,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6Y2-lk-eub">
+                                <rect key="frame" x="163" y="476" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="switchToggled:" destination="JEX-9P-axG" eventType="valueChanged" id="N8p-i8-yd3"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Completed : " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pma-gY-cyz">
+                                <rect key="frame" x="112" y="416" width="150" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="VUw-jc-0yf"/>
@@ -64,6 +78,7 @@
                     <connections>
                         <outlet property="descriptionLabel" destination="cVu-do-oBl" id="qGG-pD-ibe"/>
                         <outlet property="priorityLabel" destination="Uqr-HR-H4d" id="Grf-MR-6if"/>
+                        <outlet property="switch" destination="6Y2-lk-eub" id="8Ce-tH-MCb"/>
                         <outlet property="titleLabel" destination="onf-er-fRj" id="fr2-iD-4WI"/>
                     </connections>
                 </viewController>
